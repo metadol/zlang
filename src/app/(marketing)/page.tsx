@@ -1,9 +1,35 @@
 import { Button } from "@/components/ui/button";
+import { SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex  flex-col items-center justify-between p-24 gap-4">
-      this is a marketing page
-    </main>
+    <div className="max-w-[988px] mx-auto flex-1 w-full  flex flex-col lg:flex-row items-center justify-center p-4 gap-2">
+      <div className="relative w-[300px] h-[300px] lg:w-[424px] lg:h-[424px] mb-8 lg:mb-0">
+        <Image src="./hero.svg" alt="Hero Image" fill />
+      </div>
+
+      <div className="flex flex-col items-center gap-y-8">
+        <h1 className="text-xl lg:text-3xl font-bold text-neutral-600 max-w-[480px] text-center">
+          The free, fun, and effective way to learn a language!
+        </h1>
+
+        <div className="w-full max-w-[330px] flex flex-col gap-3">
+          <SignedOut>
+            <SignUpButton mode="modal" fallbackRedirectUrl="/learn">
+              <Button size="lg" variant="secondary" className="w-full">
+                Get Started
+              </Button>
+            </SignUpButton>
+
+            <SignInButton mode="modal" fallbackRedirectUrl="/learn">
+              <Button size="lg" className="w-full">
+                I already have an account
+              </Button>
+            </SignInButton>
+          </SignedOut>
+        </div>
+      </div>
+    </div>
   );
 }

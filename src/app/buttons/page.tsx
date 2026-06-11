@@ -22,15 +22,6 @@ const ButtonPage = () => {
 
 
       <Button variant={"ghost"}>Ghost Button</Button>
-
-      {/* <Button variant="outline">Outline Button</Button>
-            <Button variant="ghost">Ghost Button</Button>
-            <Button variant="link">Link Button</Button>
-            <Button variant="destructive">Destructive Button</Button>
-            <Button size="sm">Small Button</Button>
-            <Button size="lg">Large Button</Button>
-            <Button size="icon">I</Button>
-            <Button size="rounded">ro</Button> */}
     </div>
   );
 };

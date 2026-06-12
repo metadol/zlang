@@ -4,9 +4,9 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="max-w-[988px] mx-auto flex-1 w-full  flex flex-col lg:flex-row items-center justify-center p-4 gap-2">
+    <div className="max-w-[988px] mx-auto flex-1 w-full flex flex-col lg:flex-row items-center justify-center p-4 gap-2">
       <div className="relative w-[300px] h-[300px] lg:w-[424px] lg:h-[424px] mb-8 lg:mb-0">
-        <Image src="./hero.svg" alt="Hero Image" fill />
+        <Image src="./hero.svg" alt="Hero Image" fill priority />
       </div>
 
       <div className="flex flex-col items-center gap-y-8">
@@ -16,14 +16,14 @@ export default function Home() {
 
         <div className="w-full max-w-[330px] flex flex-col gap-3">
           <SignedOut>
-            <SignUpButton mode="modal" fallbackRedirectUrl="/learn">
+            <SignUpButton mode="modal">
               <Button size="lg" variant="secondary" className="w-full">
                 Get Started
               </Button>
             </SignUpButton>
 
-            <SignInButton mode="modal" fallbackRedirectUrl="/learn">
-              <Button size="lg" className="w-full">
+            <SignInButton mode="modal">
+              <Button size="lg" className="w-full text-sky-500">
                 I already have an account
               </Button>
             </SignInButton>

@@ -3,7 +3,7 @@ import { SignOutButton } from "@clerk/nextjs";
 
 const LearnPage = () => {
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-6 bg-yellow-500 p-2">
       <h1>Learn Page</h1>
 
       <SignOutButton redirectUrl="/">

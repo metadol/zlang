@@ -1,14 +1,20 @@
+import { MobileHeader } from "@/components/layout/mobile-header";
+import { Sidebar } from "@/components/layout/sidebar";
+
 type Props = {
   children: React.ReactNode;
 };
 
 const MainLayout = ({ children }: Props) => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <main className="flex-1 flex flex-col items-center justify-center">
-        {children}
+    <>
+      <MobileHeader />
+      <Sidebar className="hidden lg:flex" />
+      
+      <main className="lg:pl-[256px] bg-red-500 h-full pt-[50px] lg:pt-0">
+        <div className="bg-blue-500 p-2 h-full">{children}</div>
       </main>
-    </div>
+    </>
   );
 };
 

@@ -1,22 +1,64 @@
 import { cn } from "@/lib/utils";
 import { SidebarItem } from "./sidebar-item";
+import { Button } from "@/components/ui/button";
+import { ClerkLoaded, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 
 type Props = {
   className?: string;
 };
 
+const sidebarItems = [
+  {
+    label: "learn",
+    href: "/learn",
+    iconSrc: "/learn.svg",
+  },
+  {
+    label: "leaderboard",
+    href: "/leaderboard",
+    iconSrc: "/leaderboard.svg",
+  },
+  {
+    label: "quests",
+    href: "/quests",
+    iconSrc: "/quests.svg",
+  },
+  {
+    label: "shop",
+    href: "/shop",
+    iconSrc: "/shop.svg",
+  },
+];
+
 export const Sidebar = ({ className }: Props) => {
   return (
-    <div
+    <aside
       className={cn(
-        "bg-violet-500 p-2 lg:w-[256px] h-full lg:fixed left-0 top-0 px-4 border-r-2 flex flex-col gap-2",
+        "fixed left-0 top-0 h-full w-[256px] border-r-2 bg-white px-4 pt-0 pb-2 flex flex-col justify-between",
         className,
       )}
     >
-      sidebar
-      <SidebarItem label="learn" />
-      <SidebarItem label="Test" />
-      <SidebarItem label="User" />
-    </div>
+      <Link href="/learn">
+        <div className="flex items-center pt-8 pl-4 pb-7 gap-x-3">
+          <h1 className="text-3xl font-extrabold tracking-wide text-green-600">
+            duolingo
+          </h1>
+        </div>
+      </Link>
+
+      <div className="flex flex-col flex-1 gap-y-2">
+        {sidebarItems.map((item) => (
+          <SidebarItem key={item.href} {...item} />
+        ))}
+      </div>
+
+      <ClerkLoaded>
+        <Button variant="sidebar" className="justify-start h-[52px] gap-7">
+          <UserButton />
+          Profile
+        </Button>
+      </ClerkLoaded>
+    </aside>
   );
 };

@@ -1,14 +1,18 @@
+import { FeedWrapper } from "@/components/layout/feed-wrapper";
+import { StickyWrapper } from "@/components/layout/sticky-wrapper";
 import { Button } from "@/components/ui/button";
 import { SignOutButton } from "@clerk/nextjs";
+import { Header } from "./_components/header";
 
 const LearnPage = () => {
   return (
-    <div className="flex flex-col items-center gap-6 bg-yellow-500 p-2">
-      <h1>Learn Page</h1>
-
-      <SignOutButton redirectUrl="/">
-        <Button variant="dangerOutline">Sign out</Button>
-      </SignOutButton>
+    <div className="flex gap-4 p-4 bg-yellow-300">
+      <FeedWrapper>
+        <Header title="Hindi" />
+         Learn Page
+         <div className="h-[1000px]"/>
+      </FeedWrapper>
+      <StickyWrapper>My sticky sidebar</StickyWrapper>
     </div>
   );
 };

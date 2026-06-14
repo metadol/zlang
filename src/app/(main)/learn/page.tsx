@@ -3,16 +3,26 @@ import { StickyWrapper } from "@/components/layout/sticky-wrapper";
 import { Button } from "@/components/ui/button";
 import { SignOutButton } from "@clerk/nextjs";
 import { Header } from "./_components/header";
+import { UserProgress } from "@/components/widgets/user-progress";
 
 const LearnPage = () => {
   return (
     <div className="flex gap-4 p-4 bg-yellow-300">
       <FeedWrapper>
         <Header title="Hindi" />
-         Learn Page
-         <div className="h-[1000px]"/>
+        Learn Page
+        <div className="h-[1000px]" />
       </FeedWrapper>
-      <StickyWrapper>My sticky sidebar</StickyWrapper>
+      
+      <StickyWrapper>
+        <UserProgress
+          activeCourse={{ title: "Hindi", imgSrc: "/es.svg" }}
+          hearts={20}
+          points={40}
+          hasActiveSubscription
+        />
+        My sticky sidebar
+      </StickyWrapper>
     </div>
   );
 };

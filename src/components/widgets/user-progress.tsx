@@ -23,9 +23,9 @@ export const UserProgress = ({
           <Image
             src={activeCourse.imgSrc}
             alt={activeCourse.title}
-            className="rounded-md border"
             width={32}
             height={32}
+            className="rounded-md border"
           />
         </Button>
       </Link>
@@ -40,7 +40,11 @@ export const UserProgress = ({
       <Link href="/shop">
         <Button variant={"ghost"} className="text-rose-500">
           <Image src="./heart.svg" alt="heart" width={30} height={30} />
-          {hasActiveSubscription ? <InfinityIcon className="h-4 w-4"/> : hearts}
+          {hasActiveSubscription ? (
+            <InfinityIcon className="h-4 w-4" />
+          ) : (
+            hearts
+          )}
         </Button>
       </Link>
     </div>

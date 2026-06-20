@@ -9,6 +9,7 @@ type Props = {
   imgSrc: string;
   onClick: (id: number) => void;
   active: boolean;
+  loading: boolean;
 };
 
 export const Card = ({
@@ -18,6 +19,7 @@ export const Card = ({
   imgSrc,
   onClick,
   active,
+  loading,
 }: Props) => {
   return (
     <div
@@ -35,13 +37,22 @@ export const Card = ({
         )}
       </div>
 
-      <Image
-        src={imgSrc}
-        alt={title}
-        height={68}
-        width={88}
-        className="rounded-xl border"
-      />
+      {loading ? (
+        <Image
+          src={"/dots_loader.svg"}
+          alt={`${title} loading`}
+          height={50}
+          width={50}
+        />
+      ) : (
+        <Image
+          src={imgSrc}
+          alt={title}
+          height={68}
+          width={88}
+          className="rounded-xl border"
+        />
+      )}
 
       <p className="text-neutral-700 text-center font-bold text-lg">{title}</p>
     </div>

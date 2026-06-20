@@ -14,7 +14,7 @@ const LearnPage = async () => {
 
   if (!userProgress || !userProgress.activeCourse) {
     redirect("/courses");
-  }
+  } 
   return (
     <div className="flex gap-4 p-4 bg-yellow-300">
       <FeedWrapper>

@@ -12,23 +12,24 @@ const LearnPage = async () => {
 
   const [userProgress] = await Promise.all([userProgressPromise]);
 
+  // Early return guarantees the required data exists, so optional chaining isn't needed below.
   if (!userProgress || !userProgress.activeCourse) {
     redirect("/courses");
-  } 
+  }
   return (
     <div className="flex gap-4 p-4 bg-yellow-300">
       <FeedWrapper>
-        <Header title="Hindi" />
+        <Header title={userProgress.activeCourse.title} />
         Learn Page
         <div className="h-[1000px]" />
       </FeedWrapper>
 
       <StickyWrapper>
         <UserProgress
-          activeCourse={{ title: "Hindi", imgSrc: "/es.svg" }}
-          hearts={20}
-          points={40}
-          hasActiveSubscription
+          activeCourse={userProgress.activeCourse}
+          hearts={userProgress.hearts}
+          points={userProgress.points}
+          hasActiveSubscription={false}
         />
         My sticky sidebar
       </StickyWrapper>

@@ -26,8 +26,9 @@ export const List = ({ courses, activeCourseId }: Props) => {
     if (id === activeCourseId) {
       return;
     }
-    setSelectedCourseId(id);
 
+    setSelectedCourseId(id);
+    
     startTransition(() => {
       upsertUserProgress(id).catch(() => {
         toast.error("Something went wrong");

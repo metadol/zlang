@@ -4,15 +4,18 @@ import { Button } from "@/components/ui/button";
 import { SignOutButton } from "@clerk/nextjs";
 import { Header } from "./_components/header";
 import { UserProgress } from "@/components/widgets/user-progress";
-import { getUserProgress } from "@/db/queries";
+import { getUnits, getUserProgress } from "@/db/queries";
 import { redirect } from "next/navigation";
 
 const LearnPage = async () => {
+  const unitsPromise = getUnits();
   const userProgressPromise = getUserProgress();
 
-  const [userProgress] = await Promise.all([userProgressPromise]);
+  const [units, userProgress] = await Promise.all([
+    unitsPromise,
+    userProgressPromise,
+  ]);
 
-  // Early return guarantees the required data exists, so optional chaining isn't needed below.
   if (!userProgress || !userProgress.activeCourse) {
     redirect("/courses");
   }
@@ -21,6 +24,18 @@ const LearnPage = async () => {
       <FeedWrapper>
         <Header title={userProgress.activeCourse.title} />
         Learn Page
+        {units.map((unit) => (
+          <div key={unit.id}>
+            <h2>{unit.title}</h2>
+            {unit.lessons.map((lesson) => (
+              <div key={lesson.id}>
+                <h3>{lesson.title}</h3>
+                {/* <p>{lesson.description}</p> */}
+              </div>
+            ))}
+          </div>
+        ))}
+        {JSON.stringify(units, null, 2)}
         <div className="h-[1000px]" />
       </FeedWrapper>
 

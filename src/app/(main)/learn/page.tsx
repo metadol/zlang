@@ -6,6 +6,7 @@ import { Header } from "./_components/header";
 import { UserProgress } from "@/components/widgets/user-progress";
 import { getUnits, getUserProgress } from "@/db/queries";
 import { redirect } from "next/navigation";
+import { Unit } from "./_components/unit";
 
 const LearnPage = async () => {
   const unitsPromise = getUnits();
@@ -20,19 +21,20 @@ const LearnPage = async () => {
     redirect("/courses");
   }
   return (
-    <div className="flex gap-4 p-4 bg-yellow-300">
+    <div className="flex gap-4 p-4 bg-white">
       <FeedWrapper>
         <Header title={userProgress.activeCourse.title} />
-        Learn Page
         {units.map((unit) => (
-          <div key={unit.id}>
-            <h2>{unit.title}</h2>
-            {unit.lessons.map((lesson) => (
-              <div key={lesson.id}>
-                <h3>{lesson.title}</h3>
-                {/* <p>{lesson.description}</p> */}
-              </div>
-            ))}
+          <div key={unit.id} className="mb-10">
+            <Unit
+              id={unit.id}
+              order={unit.order}
+              title={unit.title}
+              description={unit.description}
+              lessons={unit.lessons}
+              activeLesson={null}
+              activeLessonPercentage={50}
+            />
           </div>
         ))}
         {JSON.stringify(units, null, 2)}

@@ -1,10 +1,18 @@
+import localFont from "next/font/local";
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 import "./globals.css";
 
-const font = Nunito({ subsets: ["latin"] });
+const dinNextRounded = localFont({
+  src: "../../public/fonts/DIN_Next_Rounded.ttf",
+  variable: "--font-din",
+});
+
+const featherBold = localFont({
+  src: "../../public/fonts/Feather_Bold.ttf",
+  variable: "--font-feather",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,8 +33,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={font.className}>
+    <html
+      lang="en"
+      className={`${dinNextRounded.variable} ${featherBold.variable}`}
+    >
+      <body className="font-sans antialiased">
         <ClerkProvider appearance={clerkAppearance}>
           <Toaster />
           {children}

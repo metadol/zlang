@@ -65,6 +65,13 @@ const config: Config = {
 					600: "#58a700"
 				}
 			},
+			fontFamily: {
+				// Overwriting 'sans' makes DIN the automatic default everywhere
+				sans: ["var(--font-din)", "sans-serif"],
+
+				// This lets you use 'font-feather' manually whenever you want headlines
+				feather: ["var(--font-feather)", "sans-serif"],
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

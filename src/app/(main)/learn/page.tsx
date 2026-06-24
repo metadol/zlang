@@ -32,12 +32,11 @@ const LearnPage = async () => {
               title={unit.title}
               description={unit.description}
               lessons={unit.lessons}
-              activeLesson={null}
+              activeLesson={undefined}
               activeLessonPercentage={50}
             />
           </div>
         ))}
-        {JSON.stringify(units, null, 2)}
         <div className="h-[1000px]" />
       </FeedWrapper>
 

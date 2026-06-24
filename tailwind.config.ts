@@ -61,9 +61,10 @@ const config: Config = {
 					'5': 'hsl(var(--chart-5))'
 				},
 				green: {
-					500: "#58cc02",// TODO: Replace hardcoded green color classes with Tailwind brand color tokens.
+					500: "#58cc02",
+					600: "#58a700"
 				}
-			}
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

@@ -41,7 +41,7 @@ export const Sidebar = ({ className }: Props) => {
     >
       <Link href="/learn">
         <div className="flex items-center pt-8 pl-4 pb-7 gap-x-3">
-          <h1 className="text-3xl font-extrabold tracking-wide text-green-600">
+          <h1 className="text-3xl font-extrabold tracking-wide text-green-500">
             duolingo
           </h1>
         </div>

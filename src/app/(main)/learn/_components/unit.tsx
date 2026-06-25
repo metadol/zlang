@@ -38,7 +38,7 @@ export const Unit = ({
               index={index}
               totalCount={lessons.length - 1}
               locked={isLocked}
-              current={isCurrent}
+              current={index==0} //isCurrent
               percenrage={activeLessonPercentage}
             />
           );

@@ -37,9 +37,9 @@ export const Unit = ({
               id={lesson.id}
               index={index}
               totalCount={lessons.length - 1}
-              locked={isLocked}
-              current={index==0} //isCurrent
-              percenrage={activeLessonPercentage}
+              locked={index===0} //isLocked
+              current={isCurrent} //isCurrent
+              percentage={activeLessonPercentage}
             />
           );
         })}

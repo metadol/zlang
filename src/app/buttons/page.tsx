@@ -20,8 +20,8 @@ const ButtonPage = () => {
       <Button variant={"sidebar"}>Sidebar Button</Button>
       <Button variant={"sidebarOutline"}>Sidebar Button</Button>
 
-
       <Button variant={"ghost"}>Ghost Button</Button>
+      <Button variant={"locked"}>Locked Button</Button>
     </div>
   );
 };

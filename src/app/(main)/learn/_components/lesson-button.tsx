@@ -46,7 +46,7 @@ export const LessonButton = ({
       >
         {current ? (
           <div className="relative h-[93px] w-[98px]">
-            <div className="absolute -top-6 left-3 z-10 hidden animate-[bounce_2s_infinite]">
+            <div className="absolute -top-6 left-[11px] z-10 animate-[bounce_2s_infinite]">
               <div className="rounded-xl border-2 bg-white px-3 py-2.5 font-bold uppercase tracking-wider text-green-500">
                 Start
               </div>

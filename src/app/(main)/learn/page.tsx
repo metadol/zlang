@@ -4,22 +4,33 @@ import { Button } from "@/components/ui/button";
 import { SignOutButton } from "@clerk/nextjs";
 import { Header } from "./_components/header";
 import { UserProgress } from "@/components/widgets/user-progress";
-import { getUnits, getUserProgress } from "@/db/queries";
+import {
+  getCourseProgress,
+  getLessonPercentage,
+  getUnits,
+  getUserProgress,
+} from "@/db/queries";
 import { redirect } from "next/navigation";
 import { Unit } from "./_components/unit";
 
 const LearnPage = async () => {
   const unitsPromise = getUnits();
   const userProgressPromise = getUserProgress();
+  const courseProgressPromise = getCourseProgress();
+  const lessonPercentagePromise = getLessonPercentage();
 
-  const [units, userProgress] = await Promise.all([
-    unitsPromise,
-    userProgressPromise,
-  ]);
+  const [units, userProgress, courseProgress, lessonPercentage] =
+    await Promise.all([
+      unitsPromise,
+      userProgressPromise,
+      courseProgressPromise,
+      lessonPercentagePromise,
+    ]);
 
-  if (!userProgress || !userProgress.activeCourse) {
+  if (!userProgress || !userProgress.activeCourse || !courseProgress) {
     redirect("/courses");
   }
+
   return (
     <div className="flex gap-4 p-4 bg-white">
       <FeedWrapper>
@@ -32,8 +43,8 @@ const LearnPage = async () => {
               title={unit.title}
               description={unit.description}
               lessons={unit.lessons}
-              activeLesson={undefined}
-              activeLessonPercentage={50}
+              activeLesson={courseProgress.activeLesson}
+              activeLessonPercentage={lessonPercentage}
             />
           </div>
         ))}

@@ -41,6 +41,7 @@ export const LessonIconButton = ({ locked, completed, Icon }: Props) => {
           width={56}
           height={46}
           className={"absolute z-0"}
+          draggable={false}
         />
       )}
     </Button>

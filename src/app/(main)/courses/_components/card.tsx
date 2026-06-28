@@ -43,6 +43,7 @@ export const Card = ({
           alt={`${title} loading`}
           height={50}
           width={50}
+          priority
         />
       ) : (
         <Image

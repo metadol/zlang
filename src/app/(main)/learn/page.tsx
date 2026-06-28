@@ -41,22 +41,22 @@ const LearnPage = async () => {
               id={unit.id}
               order={unit.order}
               title={unit.title}
-              description={unit.description}
               lessons={unit.lessons}
+              description={unit.description}
               activeLesson={courseProgress.activeLesson}
               activeLessonPercentage={lessonPercentage}
             />
-          </div>
+          </div> 
         ))}
         <div className="h-[1000px]" />
       </FeedWrapper>
 
       <StickyWrapper>
         <UserProgress
-          activeCourse={userProgress.activeCourse}
           hearts={userProgress.hearts}
           points={userProgress.points}
           hasActiveSubscription={false}
+          activeCourse={userProgress.activeCourse}
         />
         My sticky sidebar
       </StickyWrapper>

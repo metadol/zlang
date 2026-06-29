@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 import "./globals.css";
+import { ExitModal } from "@/components/modals/exit-modal";
 
 const dinNextRounded = localFont({
   src: "../../public/fonts/DIN_Next_Rounded.ttf",
@@ -40,6 +41,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <ClerkProvider appearance={clerkAppearance}>
           <Toaster />
+          <ExitModal/>
           {children}
         </ClerkProvider>
       </body>

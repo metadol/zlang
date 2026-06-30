@@ -39,7 +39,7 @@ export const ResponsiveModal = ({
   if (isMobile) {
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerContent className="max-w-sm">
+        <DrawerContent>
           <DrawerHeader>
             <div className="mb-5 flex w-full items-center justify-center">
               <Image src={iconPath} alt="" width={120} height={120} />

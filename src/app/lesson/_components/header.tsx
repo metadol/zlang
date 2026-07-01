@@ -22,7 +22,7 @@ export const Header = ({
         onClick={open}
         className="text-slate-500 hover:opacity-75 transition cursor-pointer"
       />
-      <Progress value={percentage} className="w-full" />
+      <Progress value={percentage} className="flex-1" />
       <div className="text-rose-500 font-bold flex items-center gap-2">
         <Image src="./heart.svg" alt="heart" width={30} height={30} />
         {hasActiveSubscription ? <InfinityIcon className="h-4 w-4" /> : hearts}

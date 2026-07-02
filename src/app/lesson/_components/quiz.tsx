@@ -27,6 +27,21 @@ export const Quiz = ({
 }: Props) => {
   const [hearts, setHearts] = useState(50);
   const [percentage, setPercentage] = useState(50);
+  const [challenges] = useState(initialLessonChallenges);
+
+  /*given a lesson we want to directly show the user the first uncompleted challenge in a lesson so that he can continue from where he left off and not have to start from the beginning of the lesson again*/
+  const [activeChallengeIndex, setActiveChallengeIndex] = useState(() => {
+    const uncompletedChallengeIndex = challenges.findIndex(
+      (challenge) => !challenge.completed,
+    );
+    return uncompletedChallengeIndex !== -1 ? uncompletedChallengeIndex : 0;
+  });
+
+  const challenge = challenges[activeChallengeIndex];
+  const title =
+    challenge.type === "ASSIST"
+      ? "Select the correct meaning"
+      : challenge.question;
 
   return (
     <>
@@ -40,7 +55,7 @@ export const Quiz = ({
         <div className="h-full flex items-center justify-center bg-green-500">
           <div className="lg:min-h-[350px] lg:w-[600px] w-full bg-violet-500 px-6 lg:px-0 flex flex-col gap-y-12">
             <h1 className="text-2xl lg:text-3xl text-start font-bold text-neutral-700">
-              which of this one is an apple
+              {title}
             </h1>
 
             <div>{/*TODO: add challenge */}</div>

@@ -3,6 +3,7 @@
 import { challengeOptions, challenges } from "@/db/schema";
 import { Header } from "./header";
 import { useState } from "react";
+import { QuestionBubble } from "./question-bubble";
 
 //Here we are passing initialvlaues only to the component the rest will be handled in htis comoe itself usinghte state management so marking this as use client too
 type Props = {
@@ -58,7 +59,11 @@ export const Quiz = ({
               {title}
             </h1>
 
-            <div>{/*TODO: add challenge */}</div>
+            <div>
+              {challenge.type === "SELECT" && (
+                <QuestionBubble question={challenge.question} />
+              )}
+            </div>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Check, Crown, Star } from "lucide-react";
 
 import { ProgressRing } from "@/components/widgets/progress-ring";
-import { TooltipArrow } from "@/components/widgets/tooltip-arrow";
+import { TooltipArrowBottom } from "@/components/widgets/tooltip-arrow";
 import { LessonIconButton } from "./lesson-icon-button";
 
 type Props = {
@@ -50,7 +50,7 @@ export const LessonButton = ({
               <div className="rounded-xl border-2 bg-white px-3 py-2.5 font-bold uppercase tracking-wider text-green-500">
                 Start
               </div>
-              <TooltipArrow />
+              <TooltipArrowBottom />
             </div>
 
             <ProgressRing value={percentage}>

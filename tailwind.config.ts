@@ -60,7 +60,13 @@ const config: Config = {
 					'4': 'hsl(var(--chart-4))',
 					'5': 'hsl(var(--chart-5))'
 				},
+				sky: {
+					100: "#ddf4ff",
+					300: "#84d8ff",
+				},
 				green: {
+					100: "#d7ffb8",
+					300: "#a5ed6e",
 					500: "#58cc02",
 					600: "#58a700"
 				}

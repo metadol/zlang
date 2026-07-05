@@ -4,6 +4,7 @@ import { challengeOptions, challenges } from "@/db/schema";
 import { Header } from "./header";
 import { useState } from "react";
 import { QuestionBubble } from "./question-bubble";
+import { Challenge } from "./challenge";
 
 //Here we are passing initialvlaues only to the component the rest will be handled in htis comoe itself usinghte state management so marking this as use client too
 type Props = {
@@ -52,17 +53,25 @@ export const Quiz = ({
         hasActiveSubscription={false}
       />
 
-      <div className="flex-1 bg-red-500 p-2">
-        <div className="h-full flex items-center justify-center bg-green-500">
-          <div className="lg:min-h-[350px] lg:w-[600px] w-full bg-violet-500 px-6 lg:px-0 flex flex-col gap-y-12">
+      <div className="flex-1 bg-white p-2">
+        <div className="h-full flex items-center justify-center bg-white">
+          <div className="lg:min-h-[350px] lg:w-[600px] w-full bg-white px-6 lg:px-0 flex flex-col gap-y-12">
             <h1 className="text-2xl lg:text-3xl text-start font-bold text-neutral-700">
               {title}
             </h1>
 
             <div>
-              {challenge.type === "SELECT" && (
+              {challenge.type === "ASSIST" && (
                 <QuestionBubble question={challenge.question} />
               )}
+              <Challenge
+                type={challenge.type}
+                options={challenge.challengeOptions ?? []}
+                disabled={false}
+                status={"unanswered"}
+                onSelect={() => {}}
+                selectedOption={null}
+              />
             </div>
           </div>
         </div>

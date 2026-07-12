@@ -39,6 +39,19 @@ export const Quiz = ({
     return uncompletedChallengeIndex !== -1 ? uncompletedChallengeIndex : 0;
   });
 
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [status, setStatus] = useState<"correct" | "incorrect" | "unanswered">(
+    "unanswered",
+  );
+
+  const onSelect = (optionId: number) => {
+    if (status != "unanswered") return; // Prevent selection if already answered
+
+    setSelectedOption(optionId);
+    // Here you can add logic to check if the selected option is correct or not
+    // and update the hearts and percentage accordingly.
+  };
+
   const challenge = challenges[activeChallengeIndex];
   const title =
     challenge.type === "ASSIST"
@@ -67,10 +80,10 @@ export const Quiz = ({
               <Challenge
                 type={challenge.type}
                 options={challenge.challengeOptions ?? []}
+                status={status}
                 disabled={false}
-                status={"unanswered"}
-                onSelect={() => {}}
-                selectedOption={null}
+                onSelect={onSelect}
+                selectedOption={selectedOption}
               />
             </div>
           </div>

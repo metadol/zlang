@@ -47,7 +47,7 @@ export const Card = ({
     selected: "border-sky-300 bg-sky-100 hover:bg-sky-100 text-sky-600",
     correct: "border-green-300 bg-green-100 hover:bg-green-100 text-green-600",
   };
-  
+
   const cardClasses = cn(
     selected && (status === "correct" ? variants.correct : variants.selected),
     disabled && "pointer-events-none",

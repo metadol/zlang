@@ -16,7 +16,7 @@ export const LessonIconButton = ({ locked, completed, Icon }: Props) => {
     "h-[57px] w-[70px] border-b-0 mb-2 transition-all ",
     locked
       ? "shadow-[0_8px_0_rgba(0,0,0,0.2),0_8px_0_#e5e5e5]"
-      : "shadow-[0_8px_0_0_#388500] hover:translate-y-[2px] hover:shadow-[0_7px_0_0_#388500] hover:bg-green-500",
+      : "shadow-[0_8px_0_0_rgba(0,0,0,0.2),0_8px_0_0_#58cc02] hover:translate-y-[2px] hover:shadow-[0_6px_0_0_rgba(0,0,0,0.2),0_6px_0_0_#58cc02]",
   );
 
   const iconClasses = cn(

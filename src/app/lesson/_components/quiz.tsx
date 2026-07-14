@@ -3,8 +3,9 @@
 import { challengeOptions, challenges } from "@/db/schema";
 import { Header } from "./header";
 import { useState } from "react";
-import { QuestionBubble } from "./question-bubble";
-import { Challenge } from "./challenge";
+import { QuestionBubble } from "./challenge/question-bubble";
+import { Challenge } from "./challenge/challenge";
+import { Footer } from "./footer";
 
 //Here we are passing initialvlaues only to the component the rest will be handled in htis comoe itself usinghte state management so marking this as use client too
 type Props = {
@@ -89,6 +90,8 @@ export const Quiz = ({
           </div>
         </div>
       </div>
+
+      <Footer disabled={!selectedOption} status={status} onCheck={() => {}} />
     </>
   );
 };

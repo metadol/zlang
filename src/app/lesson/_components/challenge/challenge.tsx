@@ -29,22 +29,6 @@ export const Challenge = ({
       )}
     >
       {options.map((option, index) => (
-        // <Card
-        //   type={type}
-        //   id={option.id}
-        //   key={option.id}
-        //   status={
-        //     index === 0 ? "correct" : index === 1 ? "unanswered" : "incorrect"
-        //   }
-        //   text={option.text}
-        //   disabled={index==1}
-        //   shortcut={`${index + 1}`}
-        //   imageSrc={option.imageSrc}
-        //   audioSrc={option.audioSrc}
-        //   onClick={() => onSelect(option.id)}
-        //   // selected={selectedOption === option.id}
-        //   selected={index==1||index==0}
-        // />
         <Card
           type={type}
           id={option.id}

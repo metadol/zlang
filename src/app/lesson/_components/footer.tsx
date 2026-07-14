@@ -12,9 +12,10 @@ type Props = {
 };
 
 export const Footer = ({ status, disabled, onCheck }: Props) => {
-  
+  useKey("Enter", onCheck, {}, [onCheck]);
+
   let buttonText = status === "unanswered" ? "Check" : "Continue";
-  
+
   let buttonVariant: "secondary" | "danger" | "default" = "secondary";
   if (disabled) {
     buttonVariant = "default";
@@ -30,7 +31,27 @@ export const Footer = ({ status, disabled, onCheck }: Props) => {
         status === "incorrect" && "border-transparent bg-rose-100",
       )}
     >
-      <div className="max-w-[1040px] h-full mx-auto flex items-center justify-center px-6 lg:px-10">
+      <div className="max-w-[1040px] h-full mx-auto flex flex-col lg:flex-row items-center justify-center px-6 lg:px-10">
+        {status === "correct" && (
+          <div className="text-green-600 font-bold text-base lg:text-2xl  items-center hidden lg:flex">
+            <CheckCircle
+              size={28}
+              strokeWidth={2}
+              className="text-green-600 mr-4"
+            />
+            Great!
+          </div>
+        )}
+        {status === "incorrect" && (
+          <div className="text-rose-600 font-bold text-base lg:text-2xl  items-center hidden lg:flex">
+            <XCircle
+              size={28}
+              strokeWidth={2}
+              className="text-rose-600 mr-4"
+            />
+            Correct solution: A tea.
+          </div>
+        )}
         <Button
           size={"lg"}
           disabled={disabled}

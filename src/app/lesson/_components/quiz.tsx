@@ -2,10 +2,14 @@
 
 import { challengeOptions, challenges } from "@/db/schema";
 import { Header } from "./header";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { QuestionBubble } from "./challenge/question-bubble";
 import { Challenge } from "./challenge/challenge";
 import { Footer } from "./footer";
+import { upsertChallengeProgress } from "@/actions/challenge-progress";
+import { toast } from "sonner";
+import { start } from "repl";
+import { reduceHearts } from "@/actions/user-progress";
 
 //Here we are passing initialvlaues only to the component the rest will be handled in htis comoe itself usinghte state management so marking this as use client too
 type Props = {
@@ -28,8 +32,11 @@ export const Quiz = ({
   initialPercentage,
   initialLessonChallenges,
 }: Props) => {
-  const [hearts, setHearts] = useState(50);
-  const [percentage, setPercentage] = useState(50);
+  const [pending, startTransition] = useTransition();
+  const [isChecking, setIsChecking] = useState(false);
+
+  const [hearts, setHearts] = useState(initialHearts);
+  const [percentage, setPercentage] = useState(initialPercentage);
   const [challenges] = useState(initialLessonChallenges);
 
   /*given a lesson we want to directly show the user the first uncompleted challenge in a lesson so that he can continue from where he left off and not have to start from the beginning of the lesson again*/
@@ -45,19 +52,70 @@ export const Quiz = ({
     "unanswered",
   );
 
-  const onSelect = (optionId: number) => {
-    if (status != "unanswered") return; // Prevent selection if already answered
-
-    setSelectedOption(optionId);
-    // Here you can add logic to check if the selected option is correct or not
-    // and update the hearts and percentage accordingly.
-  };
-
   const challenge = challenges[activeChallengeIndex];
   const title =
     challenge.type === "ASSIST"
       ? "Select the correct meaning"
       : challenge.question;
+  const options = challenge.challengeOptions ?? [];
+
+  const onNext = () => {
+    setActiveChallengeIndex((current) => current + 1);
+  };
+
+  const onSelect = (optionId: number) => {
+    if (status != "unanswered") return; // Prevent selection if already answered
+    setSelectedOption(optionId);
+  };
+
+  const onContinue = () => {
+    setStatus("unanswered");
+    setSelectedOption(null);
+    onNext();
+  };
+
+  const onCheck = () => {
+    if (!selectedOption) return;
+
+    setIsChecking(true);
+
+    const correctOption = options.find((option) => option.correct);
+
+    if (correctOption?.id === selectedOption) {
+      upsertChallengeProgress(challenge.id)
+        .then((response) => {
+          if (response?.error === "hearts") {
+            console.error("Missing hearts");
+            return;
+          }
+
+          setStatus("correct");
+          setPercentage((prev) => prev + 100 / challenges.length);
+
+          if (initialPercentage === 100) {
+            setHearts((prev) => Math.min(prev + 1, 5));
+          }
+        })
+        .catch(() => toast.error("Something went wrong"))
+        .finally(() => setIsChecking(false));
+    } else {
+      reduceHearts(challenge.id)
+        .then((response) => {
+          if (response?.error === "hearts") {
+            console.error("Missing hearts");
+            return;
+          }
+
+          setStatus("incorrect");
+          setPercentage((prev) => prev + 100 / challenges.length);
+          setHearts((prev) => Math.max(prev - 1, 0));
+        })
+        .catch(() => toast.error("Something went wrong"))
+        .finally(() => setIsChecking(false));
+    }
+  };
+
+  const footerAction = status === "unanswered" ? onCheck : onContinue;
 
   return (
     <>
@@ -80,7 +138,7 @@ export const Quiz = ({
               )}
               <Challenge
                 type={challenge.type}
-                options={challenge.challengeOptions ?? []}
+                options={options}
                 status={status}
                 disabled={false}
                 onSelect={onSelect}
@@ -91,7 +149,12 @@ export const Quiz = ({
         </div>
       </div>
 
-      <Footer disabled={!selectedOption} status={status} onCheck={() => {}} />
+      <Footer
+        status={status}
+        checking={isChecking}
+        onCheck={footerAction}
+        disabled={!selectedOption}
+      />
     </>
   );
 };

@@ -3,15 +3,17 @@ import { CheckCircle, XCircle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 type Props = {
   disabled: boolean;
   lessonId?: number;
   status: "correct" | "incorrect" | "unanswered" | "completed";
+  checking: boolean;
   onCheck: () => void;
 };
 
-export const Footer = ({ status, disabled, onCheck }: Props) => {
+export const Footer = ({ status, disabled, checking, onCheck }: Props) => {
   useKey("Enter", onCheck, {}, [onCheck]);
 
   let buttonText = status === "unanswered" ? "Check" : "Continue";
@@ -44,21 +46,28 @@ export const Footer = ({ status, disabled, onCheck }: Props) => {
         )}
         {status === "incorrect" && (
           <div className="text-rose-600 font-bold text-base lg:text-2xl  items-center hidden lg:flex">
-            <XCircle
-              size={28}
-              strokeWidth={2}
-              className="text-rose-600 mr-4"
-            />
+            <XCircle size={28} strokeWidth={2} className="text-rose-600 mr-4" />
             Correct solution: A tea.
           </div>
         )}
         <Button
           size={"lg"}
-          disabled={disabled}
+          disabled={disabled || checking}
+          onClick={onCheck}
           className="w-full lg:w-auto lg:ml-auto min-w-[150px]"
           variant={buttonVariant}
         >
-          {buttonText}
+          {checking ? (
+            <Image
+              src={"/dots_loader_white.svg"}
+              alt={"loading"}
+              height={35}
+              width={35}
+              priority
+            />
+          ) : (
+            buttonText
+          )}
         </Button>
       </div>
     </footer>

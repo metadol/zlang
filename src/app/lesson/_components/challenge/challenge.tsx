@@ -22,10 +22,7 @@ export const Challenge = ({
   return (
     <div
       className={cn(
-        "grid gap-2",
-        type === "ASSIST" && "grid-col-1",
-        type === "SELECT" &&
-          "grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
+        "grid gap-2 grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
       )}
     >
       {options.map((option, index) => (

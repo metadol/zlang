@@ -8,8 +8,11 @@ import { Challenge } from "./challenge/challenge";
 import { Footer } from "./footer";
 import { upsertChallengeProgress } from "@/actions/challenge-progress";
 import { toast } from "sonner";
-import { start } from "repl";
 import { reduceHearts } from "@/actions/user-progress";
+import { useAudio, useWindowSize } from "react-use";
+import { QuizComplete } from "./completed/quiz-complete";
+import { useRouter } from "next/navigation";
+
 
 //Here we are passing initialvlaues only to the component the rest will be handled in htis comoe itself usinghte state management so marking this as use client too
 type Props = {
@@ -26,18 +29,43 @@ type Props = {
   userSubscription: null;
 };
 
+const getChallengeTitle = (challenge: typeof challenges.$inferSelect) => {
+  if (challenge.type === "ASSIST") {
+    return "Select the correct meaning";
+  }
+
+  return challenge.question;
+};
+
 export const Quiz = ({
   initialLessonId,
   initialHearts,
   initialPercentage,
   initialLessonChallenges,
 }: Props) => {
+  const router = useRouter();
+
+  const [completedAudio] = useAudio({
+    src: "/lesson-complete.mp3",
+    autoPlay: true,
+  });
+
+  const [correctAudio, _c, correctControls] = useAudio({
+    src: "/duolingo-correct.mp3",
+    autoPlay: false,
+  });
+  const [incorrectAudio, _ic, incorrectControls] = useAudio({
+    src: "/duolingo-incorrect.mp3",
+    autoPlay: false,
+  });
+
   const [pending, startTransition] = useTransition();
   const [isChecking, setIsChecking] = useState(false);
 
   const [hearts, setHearts] = useState(initialHearts);
-  const [percentage, setPercentage] = useState(initialPercentage);
   const [challenges] = useState(initialLessonChallenges);
+  const [lessonId, setLessonId] = useState(initialLessonId);
+  const [percentage, setPercentage] = useState(initialPercentage);
 
   /*given a lesson we want to directly show the user the first uncompleted challenge in a lesson so that he can continue from where he left off and not have to start from the beginning of the lesson again*/
   const [activeChallengeIndex, setActiveChallengeIndex] = useState(() => {
@@ -46,32 +74,14 @@ export const Quiz = ({
     );
     return uncompletedChallengeIndex !== -1 ? uncompletedChallengeIndex : 0;
   });
-
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [status, setStatus] = useState<"correct" | "incorrect" | "unanswered">(
     "unanswered",
   );
 
-  const challenge = challenges[activeChallengeIndex];
-  const title =
-    challenge.type === "ASSIST"
-      ? "Select the correct meaning"
-      : challenge.question;
-  const options = challenge.challengeOptions ?? [];
-
-  const onNext = () => {
-    setActiveChallengeIndex((current) => current + 1);
-  };
-
   const onSelect = (optionId: number) => {
     if (status != "unanswered") return; // Prevent selection if already answered
     setSelectedOption(optionId);
-  };
-
-  const onContinue = () => {
-    setStatus("unanswered");
-    setSelectedOption(null);
-    onNext();
   };
 
   const onCheck = () => {
@@ -90,6 +100,7 @@ export const Quiz = ({
           }
 
           setStatus("correct");
+          correctControls.play();
           setPercentage((prev) => prev + 100 / challenges.length);
 
           if (initialPercentage === 100) {
@@ -107,6 +118,7 @@ export const Quiz = ({
           }
 
           setStatus("incorrect");
+          incorrectControls.play();
           setPercentage((prev) => prev + 100 / challenges.length);
           setHearts((prev) => Math.max(prev - 1, 0));
         })
@@ -115,10 +127,48 @@ export const Quiz = ({
     }
   };
 
+  const onContinue = () => {
+    setStatus("unanswered");
+    setSelectedOption(null);
+    onNext();
+  };
+
+  const onNext = () => {
+    setActiveChallengeIndex((current) => current + 1);
+  };
+  const onComplete = () => {
+    startTransition(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      router.push("/learn");
+    });
+  };
+
   const footerAction = status === "unanswered" ? onCheck : onContinue;
+
+  /* CHALLENGE TITLE OPTIONS & NULL HANDLING*/
+  const challenge = challenges[activeChallengeIndex];
+  if (!challenge) {
+    return (
+      <>
+        {completedAudio}
+        <QuizComplete />
+        <Footer
+          checking={pending}
+          lessonId={lessonId}
+          status={"completed"}
+          onCheck={onComplete}
+        />
+      </>
+    );
+  }
+
+  const title = getChallengeTitle(challenge);
+  const options = challenge.challengeOptions;
 
   return (
     <>
+      {correctAudio}
+      {incorrectAudio}
       <Header
         hearts={hearts}
         percentage={percentage}

@@ -9,6 +9,8 @@ import { challengeProgress, challenges, userProgress } from "@/db/schema";
 
 
 export const upsertChallengeProgress = async (challengeId: number) => {
+    return;
+    
     const { userId } = await auth();
 
     if (!userId) {
@@ -52,10 +54,7 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     if (isPractice) {
         await db.update(challengeProgress).set({
             completed: true,
-        })
-            .where(
-                eq(challengeProgress.id, existingChallengeProgress.id)
-            );
+        }).where(eq(challengeProgress.id, existingChallengeProgress.id));
 
         await db.update(userProgress).set({
             hearts: Math.min(currentUserProgress.hearts + 1, 5),

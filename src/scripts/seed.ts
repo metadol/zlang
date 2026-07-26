@@ -4,7 +4,7 @@ import { neon } from "@neondatabase/serverless";
 
 import * as schema from "../db/schema";
 
-const sql = neon(process.env.DATABASE_URL!); 
+const sql = neon(process.env.DATABASE_URL!);
 // @ts-ignore
 const db = drizzle(sql, { schema });
 
@@ -179,7 +179,7 @@ const main = async () => {
         audioSrc: "/es_robot.mp3",
       },
     ]);
-    /*
+
     await db.insert(schema.challenges).values([
       {
         id: 4,
@@ -203,7 +203,6 @@ const main = async () => {
         question: 'Which one of these is the "the robot"?',
       },
     ]);
-    */
     console.log("Seeding finished");
   } catch (error) {
     console.error(error);

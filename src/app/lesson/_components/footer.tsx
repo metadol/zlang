@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 type Props = {
-  disabled: boolean;
+  disabled?: boolean;
   lessonId?: number;
   status: "correct" | "incorrect" | "unanswered" | "completed";
   checking: boolean;
@@ -49,6 +49,11 @@ export const Footer = ({ status, disabled, checking, onCheck }: Props) => {
             <XCircle size={28} strokeWidth={2} className="text-rose-600 mr-4" />
             Correct solution: A tea.
           </div>
+        )}
+        {status === "completed" && (
+          <Button size={"lg"} className="hidden lg:flex">
+            Practice again
+          </Button>
         )}
         <Button
           size={"lg"}

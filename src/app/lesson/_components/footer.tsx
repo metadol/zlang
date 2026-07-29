@@ -12,7 +12,7 @@ type Props = {
   checking: boolean;
   onCheck: () => void;
   lessonId?: number;
-  correctOption: typeof challengeOptions.$inferSelect;
+  correctOption?: typeof challengeOptions.$inferSelect;
 };
 
 export const Footer = ({
@@ -56,7 +56,7 @@ export const Footer = ({
         {status === "incorrect" && (
           <div className="text-rose-600 font-bold text-base lg:text-2xl  items-center hidden lg:flex">
             <XCircle size={28} strokeWidth={2} className="text-rose-600 mr-4" />
-            Correct solution: {correctOption.text}
+            Correct solution: {correctOption?.text}
           </div>
         )}
         {status === "completed" && (

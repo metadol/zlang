@@ -12,6 +12,7 @@ import { reduceHearts } from "@/actions/user-progress";
 import { useAudio, useWindowSize } from "react-use";
 import { QuizComplete } from "./completed/quiz-complete";
 import { useRouter } from "next/navigation";
+import { useHeartsModal } from "@/store/use-hearts-modal";
 
 //Here we are passing initialvlaues only to the component the rest will be handled in htis comoe itself usinghte state management so marking this as use client too
 type Props = {
@@ -43,6 +44,7 @@ export const Quiz = ({
   initialLessonChallenges,
 }: Props) => {
   const router = useRouter();
+  const { open: openHeartsModal } = useHeartsModal();
 
   const [completedAudio] = useAudio({
     src: "/lesson-complete.mp3",
@@ -94,7 +96,7 @@ export const Quiz = ({
       upsertChallengeProgress(challenge.id)
         .then((response) => {
           if (response?.error === "hearts") {
-            console.error("Missing hearts");
+            openHeartsModal();
             return;
           }
 
@@ -112,7 +114,7 @@ export const Quiz = ({
       reduceHearts(challenge.id)
         .then((response) => {
           if (response?.error === "hearts") {
-            console.error("Missing hearts");
+            openHeartsModal();
             return;
           }
 

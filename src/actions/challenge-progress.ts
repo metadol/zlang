@@ -9,7 +9,7 @@ import { challengeProgress, challenges, userProgress } from "@/db/schema";
 
 
 export const upsertChallengeProgress = async (challengeId: number) => {
-    return;
+    // return;
     
     const { userId } = await auth();
 

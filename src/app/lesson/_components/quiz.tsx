@@ -13,7 +13,6 @@ import { useAudio, useWindowSize } from "react-use";
 import { QuizComplete } from "./completed/quiz-complete";
 import { useRouter } from "next/navigation";
 
-
 //Here we are passing initialvlaues only to the component the rest will be handled in htis comoe itself usinghte state management so marking this as use client too
 type Props = {
   initialLessonId: number;
@@ -138,14 +137,14 @@ export const Quiz = ({
   };
   const onComplete = () => {
     startTransition(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       router.push("/learn");
     });
   };
 
   const footerAction = status === "unanswered" ? onCheck : onContinue;
 
-  /* CHALLENGE TITLE OPTIONS & NULL HANDLING*/
+  /* CHALLENGE COMPLETED HANDLING*/
   const challenge = challenges[activeChallengeIndex];
   if (!challenge) {
     return (
@@ -164,6 +163,7 @@ export const Quiz = ({
 
   const title = getChallengeTitle(challenge);
   const options = challenge.challengeOptions;
+  const correctOption = options.find((option) => option.correct);
 
   return (
     <>
@@ -204,6 +204,7 @@ export const Quiz = ({
         checking={isChecking}
         onCheck={footerAction}
         disabled={!selectedOption}
+        correctOption={correctOption}
       />
     </>
   );

@@ -4,16 +4,25 @@ import { CheckCircle, XCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { challengeOptions } from "@/db/schema";
 
 type Props = {
-  disabled?: boolean;
-  lessonId?: number;
   status: "correct" | "incorrect" | "unanswered" | "completed";
+  disabled?: boolean;
   checking: boolean;
   onCheck: () => void;
+  lessonId?: number;
+  correctOption: typeof challengeOptions.$inferSelect;
 };
 
-export const Footer = ({ status, disabled, checking, onCheck }: Props) => {
+export const Footer = ({
+  status,
+  disabled,
+  checking,
+  onCheck,
+  lessonId,
+  correctOption,
+}: Props) => {
   useKey("Enter", onCheck, {}, [onCheck]);
 
   let buttonText = status === "unanswered" ? "Check" : "Continue";
@@ -47,11 +56,15 @@ export const Footer = ({ status, disabled, checking, onCheck }: Props) => {
         {status === "incorrect" && (
           <div className="text-rose-600 font-bold text-base lg:text-2xl  items-center hidden lg:flex">
             <XCircle size={28} strokeWidth={2} className="text-rose-600 mr-4" />
-            Correct solution: A tea.
+            Correct solution: {correctOption.text}
           </div>
         )}
         {status === "completed" && (
-          <Button size={"lg"} className="hidden lg:flex">
+          <Button
+            size={"lg"}
+            className="hidden lg:flex"
+            onClick={() => (window.location.href = `/lesson/${lessonId}`)}
+          >
             Practice again
           </Button>
         )}

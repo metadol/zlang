@@ -9,10 +9,11 @@ import { Footer } from "./footer";
 import { upsertChallengeProgress } from "@/actions/challenge-progress";
 import { toast } from "sonner";
 import { reduceHearts } from "@/actions/user-progress";
-import { useAudio, useWindowSize } from "react-use";
+import { useAudio, useMount } from "react-use";
 import { QuizComplete } from "./completed/quiz-complete";
 import { useRouter } from "next/navigation";
 import { useHeartsModal } from "@/store/use-hearts-modal";
+import { usePracticeModal } from "@/store/use-practice-modal";
 
 //Here we are passing initialvlaues only to the component the rest will be handled in htis comoe itself usinghte state management so marking this as use client too
 type Props = {
@@ -44,7 +45,15 @@ export const Quiz = ({
   initialLessonChallenges,
 }: Props) => {
   const router = useRouter();
+
   const { open: openHeartsModal } = useHeartsModal();
+  const { open: openPracticeModal } = usePracticeModal();
+
+  useMount(() => {
+    if (initialPercentage === 100) {
+      openPracticeModal();
+    }
+  });
 
   const [completedAudio] = useAudio({
     src: "/lesson-complete.mp3",
@@ -66,7 +75,9 @@ export const Quiz = ({
   const [hearts, setHearts] = useState(initialHearts);
   const [challenges] = useState(initialLessonChallenges);
   const [lessonId, setLessonId] = useState(initialLessonId);
-  const [percentage, setPercentage] = useState(initialPercentage);
+  const [percentage, setPercentage] = useState(() => {
+    return initialPercentage === 100 ? 0 : initialPercentage;
+  });
 
   /*given a lesson we want to directly show the user the first uncompleted challenge in a lesson so that he can continue from where he left off and not have to start from the beginning of the lesson again*/
   const [activeChallengeIndex, setActiveChallengeIndex] = useState(() => {
@@ -104,6 +115,7 @@ export const Quiz = ({
           correctControls.play();
           setPercentage((prev) => prev + 100 / challenges.length);
 
+          // This is a practice lesson
           if (initialPercentage === 100) {
             setHearts((prev) => Math.min(prev + 1, 5));
           }
@@ -121,7 +133,11 @@ export const Quiz = ({
           setStatus("incorrect");
           incorrectControls.play();
           setPercentage((prev) => prev + 100 / challenges.length);
-          setHearts((prev) => Math.max(prev - 1, 0));
+
+          if (!response?.error) {
+            setHearts((prev) => Math.max(prev - 1, 0));
+          }
+          
         })
         .catch(() => toast.error("Something went wrong"))
         .finally(() => setIsChecking(false));

@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import "./globals.css";
 import { ExitModal } from "@/components/modals/exit-modal";
 import { HeartsModal } from "@/components/modals/hearts-modal";
+import { PracticeModal } from "@/components/modals/practice-modal";
 
 const dinNextRounded = localFont({
   src: "../../public/fonts/DIN_Next_Rounded.ttf",
@@ -44,6 +45,7 @@ export default function RootLayout({
           <Toaster />
           <ExitModal/>
           <HeartsModal/>
+          <PracticeModal/>
           {children}
         </ClerkProvider>
       </body>

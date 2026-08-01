@@ -22,6 +22,16 @@ export const HeartsModal = () => {
     return null;
   }
 
+  const handleGetHearts = () => {
+    close();
+    router.push("/shop");
+  };
+
+  const handleExit = () => {
+    close();
+    router.push("/learn");
+  };
+
   return (
     <ResponsiveModal
       open={isOpen}
@@ -29,18 +39,11 @@ export const HeartsModal = () => {
       title="You ran out of hearts!"
       iconPath="/duo_heart.svg"
     >
-      <Button size="lg" variant="primary" onClick={close}>
+      <Button size="lg" variant="primary" onClick={handleGetHearts}>
         Get unlimited hearts
       </Button>
 
-      <Button
-        size="lg"
-        variant="primaryOutline"
-        onClick={() => {
-          close();
-          router.push("/learn");
-        }}
-      >
+      <Button size="lg" variant="primaryOutline" onClick={handleExit}>
         No thanks
       </Button>
     </ResponsiveModal>

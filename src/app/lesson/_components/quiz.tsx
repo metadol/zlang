@@ -13,7 +13,6 @@ import { useAudio, useMount } from "react-use";
 import { QuizComplete } from "./completed/quiz-complete";
 import { useRouter } from "next/navigation";
 import { useHeartsModal } from "@/store/use-hearts-modal";
-import { usePracticeModal } from "@/store/use-practice-modal";
 
 //Here we are passing initialvlaues only to the component the rest will be handled in htis comoe itself usinghte state management so marking this as use client too
 type Props = {
@@ -47,13 +46,6 @@ export const Quiz = ({
   const router = useRouter();
 
   const { open: openHeartsModal } = useHeartsModal();
-  const { open: openPracticeModal } = usePracticeModal();
-
-  useMount(() => {
-    if (initialPercentage === 100) {
-      openPracticeModal();
-    }
-  });
 
   const [completedAudio] = useAudio({
     src: "/lesson-complete.mp3",
@@ -137,7 +129,6 @@ export const Quiz = ({
           if (!response?.error) {
             setHearts((prev) => Math.max(prev - 1, 0));
           }
-          
         })
         .catch(() => toast.error("Something went wrong"))
         .finally(() => setIsChecking(false));

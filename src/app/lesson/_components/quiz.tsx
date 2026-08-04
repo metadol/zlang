@@ -107,7 +107,7 @@ export const Quiz = ({
           correctControls.play();
           setPercentage((prev) => prev + 100 / challenges.length);
 
-          // This is a practice lesson
+          // This is a practice lesson so increase hearts for correct answer
           if (initialPercentage === 100) {
             setHearts((prev) => Math.min(prev + 1, 5));
           }
@@ -144,6 +144,7 @@ export const Quiz = ({
   const onNext = () => {
     setActiveChallengeIndex((current) => current + 1);
   };
+  
   const onComplete = () => {
     startTransition(async () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));

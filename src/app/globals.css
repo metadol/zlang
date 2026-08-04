@@ -125,3 +125,14 @@ body {
 .delay-3 {
   animation-delay: 4s;
 }
+
+.bg-cosmic {
+  background:
+    radial-gradient(
+      216% 106% at 6% 3%,
+      rgb(38, 246, 99, 0.3) 0%,
+      rgb(38, 138, 255, 0.3) 52%,
+      rgb(252, 85, 255, 0.3) 100%
+    ),
+    rgb(0, 4, 55);
+}

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -11,6 +10,7 @@ const buttonVariants = cva(
       variant: {
         default:
           "bg-white text-black border-slate-200 border-2 border-b-4 active:border-b-2 hover:bg-slate-100 text-slate-500 disabled:opacity-50 disabled:bg-neutral-200",
+        defaultOutline:"bg-white text-black border-slate-200 border-2 border-b-4 active:border-b-2 hover:bg-slate-100 text-slate-500 disabled:opacity-50 disabled:border-b-2",
         primary:
           "bg-sky-400 text-primary-foreground hover:bg-sky-400/90 border-sky-500 border-b-4 active:border-b-0",
         primaryOutline: "bg-white text-sky-500 hover:bg-slate-100",
@@ -27,6 +27,8 @@ const buttonVariants = cva(
           "bg-transparent text-slate-500 border-2 border-transparent hover:bg-slate-100 transition-none",
         sidebarOutline:
           "bg-sky-100 text-sky-500 border-sky-300 border-2 hover:bg-sky-500/20",
+        family:
+          "bg-white border-0 border-b-4 border-b-[#9b91b9] text-black active:border-b-0",
         ghost:
           "bg-transparent text-slate-500 border-transparent border-0 hover:bg-slate-100",
         locked:

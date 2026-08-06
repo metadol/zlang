@@ -14,6 +14,7 @@ type Props = {
   locked?: boolean;
   current?: boolean;
   percentage: number;
+  reverse: boolean;
 };
 
 const pattern = [0, 1, 2, 1, 0, -1, -2, -1];
@@ -21,12 +22,14 @@ const pattern = [0, 1, 2, 1, 0, -1, -2, -1];
 export const LessonButton = ({
   id,
   index,
+  reverse,
   totalCount,
   locked,
   current,
   percentage,
 }: Props) => {
-  const rightPosition = pattern[index % pattern.length] * 40;
+  const multiplier = reverse ? -1 : 1;
+  const rightPosition = pattern[index % pattern.length] * 40 * multiplier;
 
   const isFirst = index === 0;
   const isLast = index === totalCount;

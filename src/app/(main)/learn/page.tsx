@@ -11,7 +11,7 @@ import {
   getUserProgress,
 } from "@/db/queries";
 import { redirect } from "next/navigation";
-import { Unit } from "./_components/unit";
+import { UnitsFeed } from "./_components/units-feed";
 
 const LearnPage = async () => {
   const unitsPromise = getUnits();
@@ -35,20 +35,11 @@ const LearnPage = async () => {
     <div className="flex gap-4 p-4 bg-white">
       <FeedWrapper>
         {/* <Header title={userProgress.activeCourse.title} /> */}
-        {units.map((unit) => (
-          <div key={unit.id} className="mb-10">
-            <Unit
-              id={unit.id}
-              order={unit.order}
-              title={unit.title}
-              lessons={unit.lessons}
-              description={unit.description}
-              activeLesson={courseProgress.activeLesson}
-              activeLessonPercentage={lessonPercentage}
-            />
-          </div> 
-        ))}
-        {/* <div className="h-[1000px]" /> */}
+        <UnitsFeed
+          units={units}
+          activeLesson={courseProgress.activeLesson}
+          activeLessonPercentage={lessonPercentage}
+        />
       </FeedWrapper>
 
       <StickyWrapper>

@@ -1,31 +1,35 @@
 import { lessons, units } from "@/db/schema";
-import { UnitBanner } from "./unit-banner";
 import { LessonButton } from "./lesson-button";
 
 type Props = {
-  id: number;
-  order: number;
-  title: string;
-  description: string;
   lessons: (typeof lessons.$inferSelect & { completed: boolean })[];
   activeLesson:
     | (typeof lessons.$inferSelect & { unit: typeof units.$inferSelect })
     | undefined;
   activeLessonPercentage: number;
+  description?: string;
+  reverse: boolean;
 };
 
 export const Unit = ({
-  id,
-  order,
-  title,
-  description,
+  reverse,
   lessons,
+  description,
   activeLesson,
   activeLessonPercentage,
 }: Props) => {
   return (
     <>
-      <UnitBanner title={title} description={description} />
+      {description && (
+        <div className="flex items-center gap-4">
+          <hr className="h-[2px] flex-1 border-0 bg-gray-200" />
+          <h2 className="whitespace-nowrap text-lg font-extrabold text-[#afafaf]">
+            {description}
+          </h2>
+          <hr className="h-[2px] flex-1 border-0 bg-gray-200" />
+        </div>
+      )}
+
       <div className="flex items-center flex-col realtive">
         {lessons.map((lesson, index) => {
           const isCurrent = lesson.id === activeLesson?.id;
@@ -33,12 +37,13 @@ export const Unit = ({
 
           return (
             <LessonButton
-              key={lesson.id}
-              id={lesson.id}
               index={index}
-              totalCount={lessons.length - 1}
+              id={lesson.id}
+              key={lesson.id}
+              reverse={reverse}
               locked={isLocked}
               current={isCurrent}
+              totalCount={lessons.length - 1}
               percentage={activeLessonPercentage}
             />
           );

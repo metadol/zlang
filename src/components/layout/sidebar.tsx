@@ -35,7 +35,7 @@ export const Sidebar = ({ className }: Props) => {
   return (
     <aside
       className={cn(
-        "fixed left-0 top-0 h-full w-[256px] border-r-2 bg-white px-4 pt-0 pb-2 flex flex-col justify-between",
+        "fixed left-0 top-0 h-full w-[256px] border-r-2 bg-white px-4 pt-0 pb-2 flex flex-col justify-between z-50",
         className,
       )}
     >

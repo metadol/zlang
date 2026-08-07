@@ -3,12 +3,14 @@ import { ReactNode } from "react";
 type ProgressRingProps = {
   value?: number;
   stroke?: number;
+  color?: string;
   children: ReactNode;
 };
 
 export const ProgressRing = ({
   value = 50,
   stroke = 8,
+  color = "#58CC02",
   children,
 }: ProgressRingProps) => {
   const svgW = 98;
@@ -42,7 +44,7 @@ export const ProgressRing = ({
         <path
           d={trackPath}
           fill="none"
-          stroke="#58CC02"
+          stroke={color}
           strokeWidth={stroke - 0.5}
           strokeDasharray={perimeter}
           strokeDashoffset={offset}

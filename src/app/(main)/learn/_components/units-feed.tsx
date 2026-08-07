@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { lessons, units } from "@/db/schema";
+import { getUnitColor } from "@/lib/unit-colors";
 import { Unit } from "./unit";
 import { UnitBanner } from "./unit-banner";
 
@@ -63,6 +64,7 @@ export const UnitsFeed = ({
   }, [units]);
 
   const activeUnit = units.find((u) => u.id === activeUnitId) ?? units[0];
+  const activeColor = getUnitColor(activeUnit.order);
 
   return (
     <>
@@ -70,6 +72,7 @@ export const UnitsFeed = ({
         <UnitBanner
           title={activeUnit.title}
           description={activeUnit.description}
+          color={activeColor}
         />
       </div>
 
@@ -86,6 +89,7 @@ export const UnitsFeed = ({
             activeLesson={activeLesson}
             description={index === 0 ? undefined : unit.description}
             activeLessonPercentage={activeLessonPercentage}
+            color={getUnitColor(unit.order)}
           />
         </div>
       ))}

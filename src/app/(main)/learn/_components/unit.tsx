@@ -1,4 +1,5 @@
 import { lessons, units } from "@/db/schema";
+import { UnitColor } from "@/lib/unit-colors";
 import { LessonButton } from "./lesson-button";
 
 type Props = {
@@ -9,6 +10,7 @@ type Props = {
   activeLessonPercentage: number;
   description?: string;
   reverse: boolean;
+  color: UnitColor;
 };
 
 export const Unit = ({
@@ -17,6 +19,7 @@ export const Unit = ({
   description,
   activeLesson,
   activeLessonPercentage,
+  color,
 }: Props) => {
   return (
     <>
@@ -45,6 +48,7 @@ export const Unit = ({
               current={isCurrent}
               totalCount={lessons.length - 1}
               percentage={activeLessonPercentage}
+              color={color}
             />
           );
         })}

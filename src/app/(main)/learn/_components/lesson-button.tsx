@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Check, Crown, Star } from "lucide-react";
 
 import { ProgressRing } from "@/components/widgets/progress-ring";
+import { UnitColor } from "@/lib/unit-colors";
 import { TooltipArrowBottom } from "@/components/widgets/tooltip-arrow";
 import { LessonIconButton } from "./lesson-icon-button";
 
@@ -15,6 +16,7 @@ type Props = {
   current?: boolean;
   percentage: number;
   reverse: boolean;
+  color: UnitColor;
 };
 
 const pattern = [0, 1, 2, 1, 0, -1, -2, -1];
@@ -27,6 +29,7 @@ export const LessonButton = ({
   locked,
   current,
   percentage,
+  color,
 }: Props) => {
   const multiplier = reverse ? -1 : 1;
   const rightPosition = pattern[index % pattern.length] * 40 * multiplier;
@@ -50,17 +53,21 @@ export const LessonButton = ({
         {current ? (
           <div className="relative h-[93px] w-[98px]">
             <div className="absolute -top-6 left-[11px] z-10 animate-[bounce_2s_infinite]">
-              <div className="rounded-xl border-2 bg-white px-3 py-2.5 font-bold uppercase tracking-wider text-green-500">
+              <div
+                className="rounded-xl border-2 bg-white px-3 py-2.5 font-bold uppercase tracking-wider"
+                style={{ color: color.accent }}
+              >
                 Start
               </div>
               <TooltipArrowBottom />
             </div>
 
-            <ProgressRing value={percentage}>
+            <ProgressRing value={percentage} color={color.accent}>
               <LessonIconButton
                 Icon={Icon}
                 locked={locked}
                 completed={isCompleted}
+                accentColor={color.accent}
               />
             </ProgressRing>
           </div>
@@ -69,6 +76,7 @@ export const LessonButton = ({
             Icon={Icon}
             locked={locked}
             completed={isCompleted}
+            accentColor={color.accent}
           />
         )}
       </div>

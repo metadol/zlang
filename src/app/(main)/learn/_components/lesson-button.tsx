@@ -54,7 +54,7 @@ export const LessonButton = ({
           <div className="relative h-[93px] w-[98px]">
             <div className="absolute -top-6 left-[11px] z-10 animate-[bounce_2s_infinite]">
               <div
-                className="rounded-xl border-2 bg-white px-3 py-2.5 font-bold uppercase tracking-wider"
+                className="rounded-xl border-2 border-border bg-card px-3 py-2.5 font-bold uppercase tracking-wider"
                 style={{ color: color.accent }}
               >
                 Start

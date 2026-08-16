@@ -39,7 +39,12 @@ export const ProgressRing = ({
         viewBox={`0 0 ${svgW} ${svgH}`}
         className="absolute inset-0 pointer-events-none overflow-visible"
       >
-        <path d={trackPath} fill="none" stroke="#E5E5E5" strokeWidth={stroke} />
+        <path
+          d={trackPath}
+          fill="none"
+          strokeWidth={stroke}
+          className="stroke-[#E5E5E5] dark:stroke-[hsl(var(--muted))]"
+        />
 
         <path
           d={trackPath}

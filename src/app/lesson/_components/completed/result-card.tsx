@@ -37,7 +37,7 @@ export const ResultCard = ({ value, variant }: Props) => {
 
       <div
         className={cn(
-          "flex justify-center rounded-t-2xl rounded-b-[14px] bg-white  font-bold text-lg",
+          "flex justify-center rounded-t-2xl rounded-b-[14px] bg-card font-bold text-lg",
           variant === "points" && "text-yellow-500 p-[18px] lg:p-[25px]",
           variant === "hearts" && "text-rose-500 p-4 lg:p-6",
           variant === "goals" && "text-green-500 p-4 lg:p-6",

@@ -68,7 +68,7 @@ export const UnitsFeed = ({
 
   return (
     <>
-      <div className="sticky top-[40px] z-20 bg-white  before:absolute before:-top-[40px] before:left-0 before:right-0 before:h-[40px] before:bg-white">
+      <div className="sticky top-[40px] z-20 bg-background before:absolute before:-top-[40px] before:left-0 before:right-0 before:h-[40px] before:bg-background">
         <UnitBanner
           title={activeUnit.title}
           description={activeUnit.description}

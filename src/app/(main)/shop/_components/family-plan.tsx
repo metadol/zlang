@@ -9,7 +9,7 @@ export const FamilyPlan = () => {
         <p>
           Save on <strong>Super Duolingo</strong> when you learn with friends
         </p>
-        <Button size={"lg"} variant={"family"} className="mt-6">
+        <Button size={"lg"} variant={"family"} className="mt-6 ">
           Learn more
         </Button>
       </div>

@@ -32,7 +32,7 @@ const LearnPage = async () => {
   }
 
   return (
-    <div className="flex gap-4 p-4 bg-white">
+    <div className="flex gap-4 p-4 bg-background">
       <FeedWrapper>
         {/* <Header title={userProgress.activeCourse.title} /> */}
         <UnitsFeed

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useCallback, useMemo } from "react";
 import { useAudio, useKey } from "react-use";
 
-//
+// lottie-react needs the browser, so no SSR
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 type Props = {
@@ -108,8 +108,10 @@ export const Card = ({
 
   // Define the variants for selected and correct states
   const variants = {
-    selected: "border-sky-300 bg-sky-100 hover:bg-sky-100 text-sky-600",
-    correct: "border-green-300 bg-green-100 hover:bg-green-100 text-green-600",
+    selected:
+      "border-quiz-selected-border bg-quiz-selected-bg hover:bg-quiz-selected-bg text-quiz-selected-text",
+    correct:
+      "border-quiz-correct-border bg-quiz-correct-bg hover:bg-quiz-correct-bg text-quiz-correct-text",
   };
 
   const cardClasses = cn(
@@ -121,7 +123,7 @@ export const Card = ({
     <div
       onClick={handleClick}
       className={cn(
-        "h-full border-2 rounded-xl border-b-4 hover:bg-black/5 cursor-pointer p-4 lg:p-6 active:border-b-2 text-neutral-400 relative",
+        "h-full border-2 border-border rounded-xl border-b-4 hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer p-4 lg:p-6 active:border-b-2 text-muted-foreground relative",
         cardClasses,
       )}
     >

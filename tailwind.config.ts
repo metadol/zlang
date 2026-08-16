@@ -24,7 +24,8 @@ const config: Config = {
 				foreground: 'hsl(var(--foreground))',
 				card: {
 					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
+					foreground: 'hsl(var(--card-foreground))',
+					selected: 'hsl(var(--card-selected))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -40,7 +41,9 @@ const config: Config = {
 				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
+					foreground: 'hsl(var(--muted-foreground))',
+					locked: "hsl(var(--muted-locked))"
+
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
@@ -60,8 +63,21 @@ const config: Config = {
 					'4': 'hsl(var(--chart-4))',
 					'5': 'hsl(var(--chart-5))'
 				},
-				yellow:{
-					500 : "#ffc800",
+				quiz: {
+					selected: {
+						bg: "hsl(var(--quiz-selected-bg))",
+						border: "hsl(var(--quiz-selected-border))",
+						text: "hsl(var(--quiz-selected-text))",
+					},
+					correct: {
+						bg: "hsl(var(--quiz-correct-bg))",
+						border: "hsl(var(--quiz-correct-border))",
+						text: "hsl(var(--quiz-correct-text))",
+					},
+				},
+
+				yellow: {
+					500: "#ffc800",
 				},
 				sky: {
 					100: "#ddf4ff",

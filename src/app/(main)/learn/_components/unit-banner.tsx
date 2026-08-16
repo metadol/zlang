@@ -24,7 +24,7 @@ export const UnitBanner = ({ title, description, color }: Props) => {
         <Button
           size={"lg"}
           variant={"secondary"}
-          className="border-2 border-b-4 px-3 bg-transparent"
+          className="border-2 border-b-4 px-3 bg-transparent text-white"
         >
           <NotebookText size={20} strokeWidth={2} />
           <span className="hidden lg:flex">Continue</span>

@@ -31,11 +31,11 @@ export const Items = ({ hearts, points, hasActiveSubscription }: Props) => {
     <div className="flex flex-col gap-4 items-start w-full">
       <h1 className="text-2xl font-bold mt-6">Hearts</h1>
 
-      <div className="flex p-4 gap-x-4 w-full border-t-2">
+      <div className="flex p-4 gap-x-4 w-full border-t-2 border-border">
         <Image src="/heart_refill.svg" alt="heart" width={80} height={80} />
         <div className="flex-1">
           <h2 className="text-base lg:text-xl font-bold py-1">Refill hearts</h2>
-          <p className="text-sm lg:text-base text-[#777777] hidden lg:block">
+          <p className="text-sm lg:text-base text-muted-foreground hidden lg:block">
             Get full hearts so you can worry less about making mistakes in a
             lesson
           </p>
@@ -70,13 +70,13 @@ export const Items = ({ hearts, points, hasActiveSubscription }: Props) => {
         </Button>
       </div>
 
-      <div className="flex p-4 gap-x-4 w-full border-t-2">
+      <div className="flex p-4 gap-x-4 w-full border-t-2 border-border">
         <Image src="/heart_unlimited.svg" alt="heart" width={80} height={80} />
         <div className="flex-1">
           <h2 className="text-base lg:text-xl font-bold py-1">
             Unlimited Hearts
           </h2>
-          <p className="text-sm lg:text-base text-[#777777]">
+          <p className="text-sm lg:text-base text-muted-foreground">
             Never run out of hearts with Super!
           </p>
         </div>
@@ -112,11 +112,11 @@ export const Items = ({ hearts, points, hasActiveSubscription }: Props) => {
 
       <h1 className="text-2xl font-bold mt-6">Power-Ups</h1>
 
-      <div className="flex p-4 gap-x-4 w-full border-t-2">
+      <div className="flex p-4 gap-x-4 w-full border-t-2 border-border">
         <Image src="/streak.svg" alt="heart" width={80} height={80} />
         <div className="flex-1">
           <h2 className="text-base lg:text-xl font-bold py-1">Streak Freeze</h2>
-          <p className="text-sm lg:text-base text-[#777777]">
+          <p className="text-sm lg:text-base text-muted-foreground">
             Streak Freeze allows your streak to remain in place for one full day
             of inactivity.
           </p>

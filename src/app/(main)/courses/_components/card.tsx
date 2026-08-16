@@ -55,7 +55,7 @@ export const Card = ({
         />
       )}
 
-      <p className="text-neutral-700 text-center font-bold text-lg">{title}</p>
+      <p className="text-foreground text-center font-bold text-lg">{title}</p>
     </div>
   );
 };

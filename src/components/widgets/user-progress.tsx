@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { InfinityIcon } from "lucide-react";
 import { courses } from "@/db/schema";
+import { ThemeToggle } from "./theme-toggle";
 
 type Props = {
   activeCourse: typeof courses.$inferSelect;
@@ -18,7 +19,7 @@ export const UserProgress = ({
   hasActiveSubscription,
 }: Props) => {
   return (
-    <div className="bg-white flex items-center justify-between gap-x-2 w-full">
+    <div className="bg-background flex items-center justify-between gap-x-2 w-full">
       <Link href="/courses">
         <Button variant={"ghost"}>
           <Image

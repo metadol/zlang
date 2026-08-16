@@ -21,7 +21,7 @@ export const config = {
     // - Next.js internal routes (_next)
     // - Static files (css, js, images, fonts, etc.)
     // This improves performance by avoiding unnecessary middleware execution.
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    '/((?!_next|[^?]*\\.(?:html?|css|js|json|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
 
     // Always run middleware for Clerk authentication-related routes
     '/__clerk/:path*',

@@ -24,15 +24,15 @@ export const LessonIconButton = ({
   const buttonClasses = cn(
     "h-[57px] w-[70px] border-b-0 mb-2 transition-all",
     locked
-      ? "shadow-[0_8px_0_rgba(0,0,0,0.2),0_8px_0_#e5e5e5] "
+      ? "shadow-[0_8px_0_rgba(0,0,0,0.2),0_8px_0_hsl(var(--muted))] "
       : "shadow-[0_8px_0_0_rgba(0,0,0,0.2),0_8px_0_0_var(--unit-accent)] hover:translate-y-[2px] hover:shadow-[0_6px_0_0_rgba(0,0,0,0.2),0_6px_0_0_var(--unit-accent)] bg-[var(--unit-accent)] hover:bg-[var(--unit-accent)]",
   );
 
   const iconClasses = cn(
     "h-[34px] w-[42px] z-10",
     locked
-      ? "fill-neutral-400 text-neutral-400 stroke-neutral-400"
-      : "fill-primary-foreground text-primary-foreground",
+      ? "fill-muted-locked text-muted-locked stroke-muted-locked"
+      : "fill-white text-primary-foreground text-white",
     completed && "fill-none stroke-[4]",
   );
 

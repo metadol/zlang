@@ -4,8 +4,8 @@ type Props = {
 
 const LessonLayout = ({ children }: Props) => {
   return (
-    <div className="bg-white flex flex-col h-full">
-      <div className="flex flex-col h-full w-full bg-white ">{children}</div>
+    <div className="bg-background flex flex-col h-full">
+      <div className="flex flex-col h-full w-full bg-background">{children}</div>
     </div>
   );
 };

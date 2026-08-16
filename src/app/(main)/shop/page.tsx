@@ -16,9 +16,9 @@ const ShopPage = async () => {
   }
 
   return (
-    <div className="flex gap-4 p-4 bg-white">
+    <div className="flex gap-4 p-4 bg-background">
       <FeedWrapper>
-        <div className="bg-white w-full flex flex-col items-center">
+        <div className="bg-background w-full flex flex-col items-center">
           <FamilyPlan />
           <Items
             hearts={userProgress.hearts}

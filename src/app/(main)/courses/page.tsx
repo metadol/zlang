@@ -11,8 +11,8 @@ const CoursesPage = async () => {
   ]);
 
   return (
-    <div className="h-full max-h-[912px] px-[30px] bg-white mx-auto">
-      <h1 className="text-2xl font-bold text-neutral-700">
+    <div className="h-full max-h-[912px] px-[30px] bg-background mx-auto">
+      <h1 className="text-2xl font-bold text-foreground">
         Courses for English Speakers
       </h1>
 

@@ -37,9 +37,9 @@ export const Footer = ({
   return (
     <footer
       className={cn(
-        "bg-white lg:h-[140px] h-[100px] border-t-2",
-        status === "correct" && "border-transparent bg-green-100",
-        status === "incorrect" && "border-transparent bg-rose-100",
+        "bg-background lg:h-[140px] h-[100px] border-t-2 border-border",
+        status === "correct" && "border-transparent bg-green-100 dark:bg-card/50",
+        status === "incorrect" && "border-transparent bg-rose-100 dark:bg-card/50",
       )}
     >
       <div className="max-w-[1040px] h-full mx-auto flex flex-col lg:flex-row items-center justify-center px-6 lg:px-10">

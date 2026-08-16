@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { SidebarItem } from "./sidebar-item";
+import { ThemeToggle } from "../widgets/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { ClerkLoaded, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
@@ -35,7 +36,7 @@ export const Sidebar = ({ className }: Props) => {
   return (
     <aside
       className={cn(
-        "fixed left-0 top-0 h-full w-[256px] border-r-2 bg-white px-4 pt-0 pb-2 flex flex-col justify-between z-50",
+        "fixed left-0 top-0 h-full w-[256px] border-r-2 border-border bg-background px-4 pt-0 pb-2 flex flex-col justify-between z-50",
         className,
       )}
     >
@@ -53,12 +54,18 @@ export const Sidebar = ({ className }: Props) => {
         ))}
       </div>
 
-      <ClerkLoaded>
-        <Button variant="sidebar" className="justify-start h-[52px] gap-7">
-          <UserButton />
-          Profile
-        </Button>
-      </ClerkLoaded>
+      <div className="flex flex-col gap-y-2">
+        <ClerkLoaded>
+          <Button
+            variant="sidebar"
+            className="justify-start items-center h-[52px] gap-7 hover:bg-transparent dark:hover:bg-transparent"
+          >
+            <UserButton />
+            Profile
+            <ThemeToggle className="self-end h-8" />
+          </Button>
+        </ClerkLoaded>
+      </div>
     </aside>
   );
 };

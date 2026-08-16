@@ -9,30 +9,34 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-white text-black border-slate-200 border-2 border-b-4 active:border-b-2 hover:bg-slate-100 text-slate-500 disabled:opacity-50 disabled:bg-neutral-200",
-        defaultOutline:"bg-white text-black border-slate-200 border-2 border-b-4 active:border-b-2 hover:bg-slate-100 text-slate-500 disabled:opacity-50 disabled:border-b-2",
+          "bg-card text-foreground border-slate-200 dark:border-border border-2 border-b-4 active:border-b-2 hover:bg-slate-100 dark:hover:bg-secondary text-slate-500 dark:text-muted-foreground disabled:opacity-50 disabled:bg-neutral-200 dark:disabled:bg-secondary",
+        defaultOutline:
+          "bg-card text-foreground border-slate-200 dark:border-border border-2 border-b-4 active:border-b-2 hover:bg-slate-100 dark:hover:bg-secondary text-slate-500 dark:text-muted-foreground disabled:opacity-50 disabled:border-b-2",
         primary:
           "bg-sky-400 text-primary-foreground hover:bg-sky-400/90 border-sky-500 border-b-4 active:border-b-0",
-        primaryOutline: "bg-white text-sky-500 hover:bg-slate-100",
+        primaryOutline:
+          "bg-card text-sky-500 hover:bg-slate-100 dark:hover:bg-secondary",
         secondary:
           "bg-green-500 text-primary-foreground hover:bg-green-500/90 border-[#00000033] border-b-4 active:border-b-0",
-        secondaryOutline: "bg-white text-green-500 hover:bg-slate-100",
+        secondaryOutline:
+          "bg-card text-green-500 hover:bg-slate-100 dark:hover:bg-secondary",
         danger:
           "bg-rose-500 text-primary-foreground hover:bg-rose-500/90 border-rose-600 border-b-4 active:border-b-0",
-        dangerOutline: "bg-white text-rose-500",
+        dangerOutline: "bg-card text-rose-500",
         super:
           "bg-indigo-500 text-primary-foreground hover:bg-indigo-500/90 border-indigo-600 border-b-4 active:border-b-0",
-        superOutline: "bg-white text-indigo-500 hover:bg-slate-100",
+        superOutline:
+          "bg-card text-indigo-500 hover:bg-slate-100 dark:hover:bg-secondary",
         sidebar:
-          "bg-transparent text-slate-500 border-2 border-transparent hover:bg-slate-100 transition-none",
+          "bg-transparent text-slate-500 dark:text-muted-foreground border-2 border-transparent hover:bg-slate-100 dark:hover:bg-secondary transition-none",
         sidebarOutline:
-          "bg-sky-100 text-sky-500 border-sky-300 border-2 hover:bg-sky-500/20",
+          "bg-sky-100 dark:bg-sky-950/50 text-sky-500 border-sky-300 dark:border-sky-800 border-2 hover:bg-sky-500/20",
         family:
           "bg-white border-0 border-b-4 border-b-[#9b91b9] text-black active:border-b-0",
         ghost:
-          "bg-transparent text-slate-500 border-transparent border-0 hover:bg-slate-100",
+          "bg-transparent text-slate-500 dark:text-muted-foreground border-transparent border-0 hover:bg-slate-100 dark:hover:bg-secondary",
         locked:
-          "bg-neutral-200 text-primary-foreground hover:bg-neutral-200/90 border-neutral-400 border-b-4 active:border-b-0",
+          "bg-neutral-200 dark:bg-secondary text-primary-foreground hover:bg-neutral-200/90 dark:hover:bg-secondary/90 border-neutral-400 dark:border-border border-b-4 active:border-b-0",
       },
       size: {
         default: "h-11 px-4 py-2",

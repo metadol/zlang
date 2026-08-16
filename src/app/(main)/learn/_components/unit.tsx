@@ -25,11 +25,11 @@ export const Unit = ({
     <>
       {description && (
         <div className="flex items-center gap-4">
-          <hr className="h-[2px] flex-1 border-0 bg-gray-200" />
-          <h2 className="whitespace-nowrap text-lg font-extrabold text-[#afafaf]">
+          <hr className="h-[2px] flex-1 border-0 bg-border" />
+          <h2 className="whitespace-nowrap text-lg font-extrabold text-muted-locked">
             {description}
           </h2>
-          <hr className="h-[2px] flex-1 border-0 bg-gray-200" />
+          <hr className="h-[2px] flex-1 border-0 bg-border" />
         </div>
       )}
 

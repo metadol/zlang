@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { lessons, units } from "@/db/schema";
-import { getUnitColor } from "@/lib/unit-colors";
+import { getUnitColor } from "@/constants/unit-colors";
 import { Unit } from "./unit";
 import { UnitBanner } from "./unit-banner";
 

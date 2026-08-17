@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { UnitColor } from "@/lib/unit-colors";
+import { UnitColor } from "@/constants/unit-colors";
 import { NotebookText } from "lucide-react";
 import Link from "next/link";
 

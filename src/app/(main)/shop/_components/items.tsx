@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { refillHearts } from "@/actions/user-progress";
 
-import { POINTS_TO_REFILL } from "@/constants";
+import { POINTS_TO_REFILL } from "@/constants/constants";
 
 type Props = {
   hearts: number;
@@ -18,7 +18,7 @@ export const Items = ({ hearts, points, hasActiveSubscription }: Props) => {
   const [pending, startTransition] = useTransition();
 
   const onRefillHearts = () => {
-    if (pending || hearts === 6000 || points < 10) return;
+    if (pending || hearts === 5 || points < 10) return;
 
     startTransition(() => {
       refillHearts().catch((error) => {
@@ -50,7 +50,7 @@ export const Items = ({ hearts, points, hasActiveSubscription }: Props) => {
           onClick={onRefillHearts}
           disabled={hearts === 5 || points < POINTS_TO_REFILL}
         >
-          {hearts === 5 ? (
+          {hearts === 6 ? (
             "Full"
           ) : pending ? (
             <Image
@@ -124,8 +124,7 @@ export const Items = ({ hearts, points, hasActiveSubscription }: Props) => {
         <Button
           size={"lg"}
           variant={"defaultOutline"}
-          className={"lg:min-w-[167.95px]"}
-          onClick={onRefillHearts}
+          className={"lg:min-w-[168px]"}
           disabled={true}
         >
           Frozen

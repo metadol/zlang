@@ -1,5 +1,5 @@
 import { lessons, units } from "@/db/schema";
-import { UnitColor } from "@/lib/unit-colors";
+import { UnitColor } from "@/constants/unit-colors";
 import { LessonButton } from "./lesson-button";
 
 type Props = {

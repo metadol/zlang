@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Check, Crown, Star } from "lucide-react";
 
 import { ProgressRing } from "@/components/widgets/progress-ring";
-import { UnitColor } from "@/lib/unit-colors";
+import { UnitColor } from "@/constants/unit-colors";
 import { TooltipArrowBottom } from "@/components/widgets/tooltip-arrow";
 import { LessonIconButton } from "./lesson-icon-button";
 

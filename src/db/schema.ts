@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm";
-import { boolean, integer, pgEnum, pgTable, serial, text } from "drizzle-orm/pg-core";
+import { boolean, integer, pgEnum, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
 /**
  * ==========================================================
@@ -384,6 +384,17 @@ export const userProgressRelations = relations(
     }),
   })
 );
+
+
+export const userSubscription = pgTable("user_subscription", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull().unique(),
+  
+  razorpaySubscriptionId: text("razorpay_subscription_id").notNull(),
+  razorpayStatus: text("razorpay_status").notNull(),
+  razorpayCurrentPeriodEnd: timestamp("razorpay_current_period_end").notNull(),
+});
+
 
 
 

@@ -64,6 +64,9 @@ export const UnitsFeed = ({
   }, [units]);
 
   const activeUnit = units.find((u) => u.id === activeUnitId) ?? units[0];
+  if (!activeUnit) {
+    return null;
+  }
   const activeColor = getUnitColor(activeUnit.order);
 
   return (

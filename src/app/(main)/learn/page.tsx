@@ -12,6 +12,7 @@ import {
 } from "@/db/queries";
 import { redirect } from "next/navigation";
 import { UnitsFeed } from "./_components/units-feed";
+import { TestRazorpay } from "@/components/test-razorpay";
 
 const LearnPage = async () => {
   const unitsPromise = getUnits();
@@ -50,6 +51,7 @@ const LearnPage = async () => {
           activeCourse={userProgress.activeCourse}
         />
         My sticky sidebar
+        <TestRazorpay />
       </StickyWrapper>
     </div>
   );
